@@ -1,18 +1,32 @@
 ---
+import {loadId} from "astro/dist/vite-plugin-astro/utils";
+import "../src/globals.css";
+const pageTitle = 'About Me!';
+const aboutMe = 'Who I am ?'
+const skills = ['HTML', 'CSS', 'javascript', 'JQuery', 'Astro', 'React'];
 
+const skillColor = "navy";
+const fontWeight = 600;
+let goals = 4;
 ---
+<style define:vars = {{skillColor, fontWeight}}>
+
+    .skill {
+        font-family: 'Astro', sans-serif;
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+    }
+</style>
 <body>
-<a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/blog/">Blog</a>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/blog/">Blog</a>
 
-<h1>About Me</h1>
-<h2>... and my new Astro site!</h2>
-<h1>My Astro Site</h1>
-<h1>About Me</h1>
-<h2>... and my new Astro site!</h2>
+    <h1>{pageTitle}</h1>
+    <h2>{aboutMe}</h2>
 
-<p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-
-<p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+    <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    {goals <= 3 ? <p>I have {goals} goals</p> : <p>I have more then {goals - 1} goals</p>}
 </body>
